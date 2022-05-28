@@ -26,9 +26,16 @@ public class ProductImplService implements ProductService {
     }
 
     @Override
-    public Iterable<Product> findAllProduct(Product product) {
+    public Product findProduct(Integer product_id) {
+        Optional<Product> _product = productRepository.findById(product_id);
+        return _product.get();
+    }
+
+    @Override
+    public Iterable<Product> findAllProduct() {
         return productRepository.findAll();
     }
+
 
     @Override
     public Product editProduct(Product product) {
@@ -47,4 +54,6 @@ public class ProductImplService implements ProductService {
     public Optional<Product> findProductByName(String name) {
         return productRepository.findByName(name);
     }
+
+
 }

@@ -32,13 +32,13 @@ public class ProductController {
 
     @PostMapping(value = "/productupload")
     public ModelAndView createProduct(@Valid Product product, BindingResult bindingResult) {
-        log.info("Inside the Create Product Service");
-        log.info("Product Name = " + product.getName());
+//        log.info("Inside the Create Product Service");
+//        log.info("Product Name = " + product.getName());
         ModelAndView modelAndView = new ModelAndView();
         if (productService.findProductByName(product.getName()).isPresent()) {
             bindingResult
                     .rejectValue("name", "error.name",
-                            "There is already a user registered with the user name provided");
+                            "There is already a product registered with the  name provided");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("productUpload");

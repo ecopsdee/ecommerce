@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,14 +19,14 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cart_sequence")
+    @Column(name = "cartId")
     private int cartId;
 
-    @Column(name = "product")
-    private Product product;
+    @Column(name = "orders")
+    @OneToMany
+    private Set<Orders> orders = new HashSet<>();
 
     @Column(name = "qty")
-    @NotNull(message = "enter unit quantity")
     private int qty;
 
 

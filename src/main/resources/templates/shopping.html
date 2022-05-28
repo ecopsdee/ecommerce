@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to Sante-Clara Shopping Complex</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form th:action="@{/logout}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Logout Page</button>
+    <h2>Cart</h2>
+    <table border="1">
+        <tr>
+            <th>Items</th>
+            <th>Qty</th>
+            <th>Total Unit</th>
+        </tr>
+        <tr th:each="item: ${cart}">
+            <td th:text="${item.product}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.totalPrice}"></td>
+
+
+        </tr>
+    </table>
+
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <table border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th>Buy</th>
+                </tr>
+                <tr th:each="item: ${list_items}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <form method="POST" th:action="@{/buy}">
+                            <input type="hidden" name = "item_id" th:value="${item.id}" />
+                            <input type="text" name = "qty" placeholder="Quantity"
+                                   class="form-control"/>
+
+                            <button type="submit" name="submit" value="value" class="link-button">Buy Now</button>
+                        </form> |
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
